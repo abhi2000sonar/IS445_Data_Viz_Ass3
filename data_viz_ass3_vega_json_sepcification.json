@@ -1,0 +1,13 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/abhi2000sonar/IS445_Data_Viz_Ass3/main/building_inventory.json"
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {"field": "Agency Name", "type": "ordinal"},
+    "y": {"field": "count", "type": "quantitative"},
+    "color": {"field": "Agency Name", "type": "nominal"}
+  },
+  "title": "Building Inventory Bar Chart"
+}
