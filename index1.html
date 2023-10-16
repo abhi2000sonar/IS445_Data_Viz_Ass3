@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <title>Your Enhanced Vega-Lite Visualization</title>
+
+  <style>
+    /* Add some basic CSS styles for better presentation */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    #vis {
+      margin: 20px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div id="vis"></div>
+
+  <!-- Add this line to provide a link to the README file -->
+  <p><a href="README.md" target="_blank">Link to README</a></p>
+
+  <script>
+    const spec = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "data": {
+        "url": "https://uiuc-ischool-dataviz.github.io/fall2023-acg-acu/data/building_inventory.csv",
+        "format": {"type": "csv"}
+      },
+      "hconcat": [
+        {
+          "mark": {"type":"point", "shape":"square", "filled": true, "color": "blue"},
+          "encoding": {
+            "x": {"field": "Year Acquired", "type": "quantitative"},
+            "y": {"field": "Year Constructed", "type": "quantitative"},
+            "tooltip": {"field": "Building Name:N", "type": "ordinal"},
+          }
+        },
+        {
+          "mark": {"type": "bar", "cornerRadius": 5},
+          "encoding": {
+            "x": {"field": "Congress Dist", "type": "ordinal", "sort": "ascending"},
+            "y": {"aggregate": "sum", "field": "Square Footage"},
+            "color": {"field": "Congress Dist", "type": "nominal", "scale": {"scheme": "set2"}},
+            "tooltip": {"field": "Congress Dist", "type": "ordinal"}
+          }
+        }
+      ]
+    };
+
+    vegaEmbed('#vis', spec);
+  </script>
+</body>
+</html>
